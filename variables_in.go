@@ -102,16 +102,35 @@ func numbers_demo(){
 	agethree := 40 
 
 	fmt.Println(ageone, agetwo, agethree)
-
-	/* 
-		types of numbers in Go
-		int 
-		int64
-
-	*/
 }
 
 func main() {
+
+	/*
+		** formatted printing **
+
+		%v for variable
+		%q for quoted string
+		%T for type of variable
+		%f for float
+		%d for integer
+		%s for strings
+		-- Limiting the number of digits after decimal points in float
+			or rounding off -- 0.n%f
+
+		Read this ---> https://pkg.go.dev/fmt
+
+	*/
+
+	/*
+		** Sprintf **
+		Sprintf is similar to printf but it also saves the created string in a variable for us
+		save-formate-printf
+		var formatted_string = fmt.Sprintf(< formatted string >)
+
+		
+
+	*/
 
 	initialization_demo()
 	modification_demo()
