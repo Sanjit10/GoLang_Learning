@@ -1,0 +1,22 @@
+{
+	"name": "Learning Go",
+	"initializeCommand": "wsl touch ./.devcontainer/.env",
+	"build": {
+		"dockerfile": "Dockerfile"
+	},
+	"runArgs": [
+		"--env-file",
+		"${localWorkspaceFolder}/.devcontainer/.env"
+	],
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"golang.go",
+				"roemer.gotaskr-vscode",
+				"ms-azuretools.vscode-docker",
+				"GitHub.vscode-github-actions"
+			]
+		}
+	},
+	"remoteUser": "vscode"
+}
