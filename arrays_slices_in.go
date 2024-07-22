@@ -59,9 +59,9 @@ func slice_() {
 	/*
 		s has 0 length, 0 capacity and null pointer |0|0|0| ----> null slice
 		t has 0 length, 0 capacity and special pointer |0|0|struct{}|  ----> empty slice, it has a pointer to something under the hood
-																		  it is a non null pointer but it is a kind of sentinal value
-		u has 5 length, 5 capacity and pointer to contigious mem of length 5 , the memories are filled with 0
-		v has 0 length, 5 capacity and pointer to contigious mem of length 5 , the memories are filled with garbage value or has space for values but no values
+																		  it is a non null pointer but it is a kind of sentinel value
+		u has 5 length, 5 capacity and pointer to contiguous mem of length 5 , the memories are filled with 0
+		v has 0 length, 5 capacity and pointer to contiguous mem of length 5 , the memories are filled with garbage value or has space for values but no values
 	*/
 
 	/*
@@ -73,7 +73,7 @@ func slice_() {
 		u ---> [0,0,0,0,0]
 		v ---> []
 
-		Also when checking for wmpty slices do  not use arr == null checker for very this reason
+		Also when checking for empty slices do  not use arr == null checker for very this reason
 		a more proper choice would be to check if len(arr)	== 0 as it encompasses all the cases.
 
 	*/
@@ -81,14 +81,14 @@ func slice_() {
 	/*
 		why would append not work for u, where only length is described?
 
-		when we declare a slice using make( []int, 5), the slice cxreated has the following property
+		when we declare a slice using make( []int, 5), the slice created has the following property
 		the length is 5
 		the capacity is 5
-		the ptr is pointing to a contigious memory location
+		the ptr is pointing to a contiguous memory location
 		and the memories are filled with 0
 
-		so if we now append to this array the capacity is overcomed so a new array with updated memory address will
-		be created and the value will be appednded at the end that is at 6th position
+		so if we now append to this array the capacity is overcome so a new array with updated memory address will
+		be created and the value will be appended at the end that is at 6th position
 
 	*/
 
@@ -107,7 +107,7 @@ func slice_() {
 	fmt.Printf("\n c has length %v and capacity %v\n", len(c), cap(c))
 
 	/*
-		Unintuitive opearations in go
+		Unintuitive operations in go
 	*/
 	// suppose a array
 
@@ -117,28 +117,28 @@ func slice_() {
 	slice1 := arr1[:2]
 	
 	// What you are doing is defining a logical view into arr1 that is bounded by the rules specified in slice1
-	// What it means for us is wehn you access slice1 you are viewwing into cahrs of arr1 through slic1
-	// so if you ask for the lengthand capacity of slice 1 
+	// What it means for us is when you access slice1 you are viewing into chars of arr1 through slice1
+	// so if you ask for the length and capacity of slice 1 
 	// intuitively you would except it to be 2 and 2 , but it is actually 2, 5
 	fmt.Printf("\nThe length of slice1 is %v and its capacity is %v", len(slice1), cap(slice1))
 
 	// What it results in is that whe n you append to slice1 you are actually mutating arr1
 	fmt.Println("\nThis is arr1 before slice1 uses append", arr1)
 	slice1 = append(slice1, 6)
-	fmt.Println("This is arr1 and slic1 after slice1 append operation", arr1, slice1)
+	fmt.Println("This is arr1 and slice1 after slice1 append operation", arr1, slice1)
 
-	// This is an unintuitive opration allowd by go , for a more expected behaviour describing the capacity of the 
+	// This is an unintuitive oration allowed by go , for a more expected behavior describing the capacity of the 
 	// slice during its declaration would be helpful
 	arr2 := [5]int{1,2,3,4,5}
 	slice2 := arr2[:2:2]
 	fmt.Printf("\nThe length of slice2 is %v and its capacity is %v", len(slice2), cap(slice2))
 
-	// Now when you append to slice2 you are exceeding its defined capacity and thus forces go to reaalocate the memory for slice2
+	// Now when you append to slice2 you are exceeding its defined capacity and thus forces go to reallocate the memory for slice2
 	fmt.Println("\nThis is arr2 before slice2 uses append", arr2)
 	slice2 = append(slice2, 6)
-	fmt.Println("This is arr2 and slic1 after slice2 append operation", arr2, slice2)
+	fmt.Println("This is arr2 and slice1 after slice2 append operation", arr2, slice2)
 
-	// This is an unintuitive opration allowd by go , for a more expected behaviour describing the capacity of the 
+	// This is an unintuitive operation allowed by go , for a more expected behavior describing the capacity of the 
 	// slice during its declaration would be helpful
 }
 
